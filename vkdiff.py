@@ -7,7 +7,7 @@ import re
 
 g = Grab()
 g.setup(url='http://vkontakte.ru/login.php',
-        post={'email' : '', 'pass' : ''})
+        post={'email' : 'george15@list.ru', 'pass' : 'coldplay15'})
 g.request()
 g.setup(url='http://vkontakte.ru' + g.headers['Location'])
 g.request()
