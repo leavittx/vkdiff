@@ -1,26 +1,36 @@
-
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 from grab import Grab
 import re, getopt, sys, os
 
-HELPSTR = '-p, --print - Print current database\n-h, --help - Print this message\n-g, --grep - Grep friends\n-d, --diff - Find the difference'
+#fucker has changed pass
+#email = 'george15@list.ru'
+#password = 'coldplay15'
+
+#insert your account info below
+email = ''
+password = ''
+
+HELPSTR = 'vkdiff by np3 & lp3, 2009\nUsage:\n-p, --print - Print current database\n-h, --help  - Display this help\n-g, --grep  - Save friends from vkontakte.ru to database\n-d, --diff  - Find the difference'
 DATAFILE = 'database'
 def help():
   print HELPSTR
+  
 def grep():
   g.setup(url='http://pda.vkontakte.ru/login',
-                    post={'email' : 'george15@list.ru', 'pass' : 'coldplay15'})
+                    post={'email' : email, 'pass' : password})
   g.request()
   g.setup(url='http://pda.vkontakte.ru/write')
   g.request()
-  list = re.findall('<option value\="([0-9]+)" >',g.response_body)
+  list = re.findall('<option value\="([0-9]+)" >', g.response_body)
   return list
-
+  
 def writefile(buf, file):
   
     if os.path.exists(file):
+# hmm...why? try to update the database twice or more
+# some fix is needed
       f = open(file, 'rw+')
       data = f.read()
       data += buf
@@ -32,17 +42,17 @@ def writefile(buf, file):
       f = open(file, 'w')
       f.write(buf)
       f.close()
+      
 def readfile(file):
     try:
       f = open(file)
       return f.read()
     except IOError, err:
       print err.strerror
-     
-   
-
+      
 def printbase():
     print readfile(DATAFILE)
+    
 def diff():
     s1 = readfile(DATAFILE)
     b1 = s1.split('\n')
@@ -95,4 +105,3 @@ if __name__ == "__main__":
         elif o in ('-d', '--diff'):
             diff()
             sys.exit()
-       
