@@ -1,19 +1,19 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
+ 
 from grab import Grab
 import re, getopt, sys, os
-
+ 
 #insert your account info below =)
 email = ''
 password = ''
-
+ 
 HELPSTR = 'vkdiff by np3 & lp3, 2009\nUsage:\n-g, --get   - Get friends from web and write them to database\n\
 -d, --diff  - Diff friends from web and saved in database\n-p, --print - Print database\n\
 -h, --help  - Display this help'
-
+ 
 DATAFILE = 'database'
-
+ 
 def help():
   print HELPSTR
   
@@ -78,7 +78,7 @@ def diff():
 #      i += 1
 #      for i in range(i, length ):
 #            print "DIFF - " + b1[i] + ' ' + '(Empty)'
-
+ 
 #   if len2 > length:
 #        for i in range(0, length ):
 #          if b1[i] != b2[i]:
@@ -86,15 +86,15 @@ def diff():
 #        i += 1
 #        for i in range(i, len2 ):
 #            print "DIFF - (Empty) " + b2[i]
-
+ 
     for item in b1:
       if not item in b2:
         print '- ' + item
-
+ 
     for item in b2:
       if not item in b1:
         print '+ ' + item
-
+ 
 if __name__ == "__main__":
     g = Grab()
     newstr = ''
