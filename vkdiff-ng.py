@@ -5,8 +5,8 @@ from grab import Grab
 import re, getopt, sys, os
 
 #insert your account info below =)
-email = 'itmodermo@mail.ru'
-password = 'linuxa'
+email = ''
+password = ''
 
 HELPSTR = 'vkdiff by np3 & lp3, 2009\nUsage:\n-g, --get   - Get friends from web and write them to database\n\
 -d, --diff  - Diff friends from web and saved in database\n-p, --print - Print database\n\
