@@ -3,6 +3,7 @@
 
 from grab import Grab
 import re, getopt, sys, os
+import ConfigParser
 
 #insert your account info below =)
 email = ''
@@ -133,6 +134,24 @@ if __name__ == "__main__":
        print err
        help()
        sys.exit(0);
+    if os.path.exists('account') == False:
+       print "Login:"
+       login = str(raw_input())
+       print "Password:"
+       pwd = str(raw_input())
+       config = ConfigParser.RawConfigParser()
+       config.add_section('Account')
+       config.set('Account', 'Login', login)
+       config.set('Account', 'Password', pwd)
+       with open('account', 'wb') as configfile:
+         config.write(configfile)
+	   email = login
+	   password = pwd
+    else:
+       config = ConfigParser.RawConfigParser()
+       config.read('account')
+       email = config.get('Account', 'Login')
+       password = config.get('Account', 'Password')
     if len(opts) == 0:
        # help()
         diff()
